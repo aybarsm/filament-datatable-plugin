@@ -1,0 +1,57 @@
+{
+    "name": "aybarsm/filament-datatable-plugin",
+    "description": "A Filament plugin for building dynamic, spreadsheet-style data tables with live calculations, custom models, and resource pages.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["aybarsm", "alastyr", "php", "laravel", "filament", "datatable"],
+    "homepage": "https://www.github.com/aybarsm/filament-datatable-plugin",
+    "authors": [
+        {
+            "name": "Murat Aybars",
+            "email": "murat.aybars@alastyr.com",
+            "homepage": "https://www.alastyr.com",
+            "role": "Innovation and Corporate Strategy Manager"
+        }
+    ],
+    "require": {
+        "php": "^8.5",
+        "filament/filament": "^5.0",
+        "spatie/laravel-settings": "^3.9"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.30",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-laravel": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aybarsm\\Filament\\DataTable\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aybarsm\\Filament\\DataTable\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aybarsm\\Filament\\DataTableServiceProvider"
+            ],
+            "aliases": {
+                "DataTable": "Aybarsm\\Filament\\DataTable\\Facades\\DataTable"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
