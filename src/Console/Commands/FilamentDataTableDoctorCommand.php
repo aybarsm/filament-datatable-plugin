@@ -6,7 +6,7 @@ namespace Aybarsm\Filament\DataTable\Console\Commands;
 
 use Aybarsm\Filament\DataTable\DataTable;
 use Aybarsm\Filament\DataTable\DataTableServiceProvider;
-use Aybarsm\Filament\DataTable\Support\ProviderDoctor;
+use Aybarsm\Filament\DataTable\Support\Provider;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
@@ -22,7 +22,7 @@ class FilamentDataTableDoctorCommand extends Command
 
     protected $aliases = ['filament-datatable:install', 'install:filament-datatable'];
 
-    protected ProviderDoctor $doctor;
+    protected Provider $doctor;
 
     public function handle(DataTable $dt): void
     {

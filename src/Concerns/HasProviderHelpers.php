@@ -39,4 +39,9 @@ trait HasProviderHelpers
     {
         return join_paths($this->pathDatabaseDir(), 'migrations');
     }
+
+    public function configPublished(): bool
+    {
+        return file_exists($this->pathConfigFile());
+    }
 }

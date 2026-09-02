@@ -6,7 +6,7 @@ namespace Aybarsm\Filament\DataTable;
 
 use Aybarsm\Filament\DataTable\Concerns\HasProviderHelpers;
 use Aybarsm\Filament\DataTable\Console\Commands\FilamentDataTableDoctorCommand;
-use Aybarsm\Filament\DataTable\Support\ProviderDoctor;
+use Aybarsm\Filament\DataTable\Support\Provider;
 use Illuminate\Support\ServiceProvider;
 
 class DataTableServiceProvider extends ServiceProvider
@@ -46,7 +46,7 @@ class DataTableServiceProvider extends ServiceProvider
     {
         $this->app->singleton(DataTable::class);
         $this->app->alias(DataTable::class, 'filament-datatable');
-        $this->app->singleton(ProviderDoctor::class);
+        $this->app->singleton(Provider::class);
     }
 
     protected function bootPublishes(): void

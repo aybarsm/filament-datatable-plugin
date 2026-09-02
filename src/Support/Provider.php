@@ -10,11 +10,33 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use function Illuminate\Filesystem\join_paths;
 
-class ProviderDoctor
+class Provider
 {
     public CONST array META = [
-        'regex.migration' => '/^\d{4}_\d{2}_\d{2}_\d{6}_([a-zA-Z0-9_-]+)\.php$/'
+        'regex.file.migration' => '/^\d{4}_\d{2}_\d{2}_\d{6}_([a-zA-Z0-9_-]+)\.php$/'
     ];
+
+    public static function findFiles(string|\Stringable $in): Finder
+    {
+        return Finder::create()
+            ->files()
+            ->depth('==0')
+            ->in((string) $in);
+    }
+
+    public static function findFilesDatabaseMigrations(string|\Stringable $in): Finder
+    {
+        return static::findFiles($in)->name(static::META['regex.file.migration']);
+    }
+
+    public static function findFilesAppDatabaseMigrations(): Finder
+    {
+        return Finder::create()
+            ->files()
+            ->in(app()->databasePath('migrations'))
+            ->depth('==0')
+            ->name(static::META['regex.migration']);
+    }
 
     public function provider(): DataTableServiceProvider
     {
