@@ -38,7 +38,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Aybarsm\\Filament\\DataTableServiceProvider"
+                "Aybarsm\\Filament\\DataTable\\DataTableServiceProvider"
             ],
             "aliases": {
                 "DataTable": "Aybarsm\\Filament\\DataTable\\Facades\\DataTable"

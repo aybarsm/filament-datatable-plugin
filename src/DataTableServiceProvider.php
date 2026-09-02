@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 namespace Aybarsm\Filament\DataTable;
 
+use Aybarsm\Filament\DataTable\Concerns\HasProviderHelpers;
 use Aybarsm\Filament\DataTable\Console\Commands\FilamentDataTableDoctorCommand;
-use Aybarsm\Filament\DataTable\Support\DataTableDoctor;
+use Aybarsm\Filament\DataTable\Support\ProviderDoctor;
 use Illuminate\Support\ServiceProvider;
 
 class DataTableServiceProvider extends ServiceProvider
 {
+    use HasProviderHelpers;
+
+    public function __construct($app)
+    {
+        parent::__construct($app);
+        $this->pathBaseDir = realpath(__DIR__ . '/../');
+        $this->fileConfigName = 'filament-datatable.php';
+    }
+
     public function register(): void
     {
         $this->registerConfig();
@@ -36,13 +46,13 @@ class DataTableServiceProvider extends ServiceProvider
     {
         $this->app->singleton(DataTable::class);
         $this->app->alias(DataTable::class, 'filament-datatable');
-        $this->app->singleton(DataTableDoctor::class);
+        $this->app->singleton(ProviderDoctor::class);
     }
 
     protected function bootPublishes(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/filament-datatable.php' => config_path('filament-datatable.php')
+            __DIR__ . "/../config/{$this->fileConfigName}" => config_path($this->fileConfigName)
         ], 'filament-datatable-config');
 
         $this->publishesMigrations([
